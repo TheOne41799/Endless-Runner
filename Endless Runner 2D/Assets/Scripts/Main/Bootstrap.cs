@@ -2,6 +2,7 @@ using EndlessRunner.Common;
 using EndlessRunner.Data;
 using EndlessRunner.Event;
 using EndlessRunner.Game;
+using EndlessRunner.UI;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -16,6 +17,7 @@ namespace EndlessRunner.Main
         private IEventManager eventManager;
 
         private IManager gameManager;
+        private IManager uiManager;
 
         private void Awake()
         {
@@ -45,11 +47,13 @@ namespace EndlessRunner.Main
         private void CreateManagers()
         {
             gameManager = GameObject.Instantiate<GameManager>(gameData.GameManagerPrefab, this.transform);
+            uiManager = GameObject.Instantiate<UIManager>(gameData.UIManagerPrefab, this.transform);
         }
 
         private void SetManagerDependencies()
         {
             gameManager.InitializeManager(eventManager);
+            uiManager.InitializeManager(eventManager);
         }
     }
 }

@@ -1,4 +1,5 @@
 using EndlessRunner.Game;
+using EndlessRunner.UI;
 using UnityEngine;
 
 namespace EndlessRunner.Data
@@ -8,7 +9,9 @@ namespace EndlessRunner.Data
     {
         [Header("Prefabs")]
         [SerializeField] private GameManager gameManagerPrefab;
+        [SerializeField] private UIManager uiManagerPrefab;
 
         public GameManager GameManagerPrefab => gameManagerPrefab;
+        public UIManager UIManagerPrefab => uiManagerPrefab;
     }
 }
