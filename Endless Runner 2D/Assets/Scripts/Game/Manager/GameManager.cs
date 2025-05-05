@@ -9,16 +9,13 @@ namespace EndlessRunner.Game
         private IEventManager eventManager;
         private GameState currentGameState;
 
-        private void Awake()
-        {
-            Application.targetFrameRate = 60;
-            SetGameState(GameState.MAIN_MENU);
-        }
+        private void Awake() => Application.targetFrameRate = 60;
 
         public void InitializeManager(IEventManager eventManager)
         {
             SetManagerDependencies(eventManager);
             RegisterEventListeners();
+            SetGameState(GameState.MAIN_MENU);
         }
 
         private void SetManagerDependencies(IEventManager eventManager) => this.eventManager = eventManager;
@@ -35,15 +32,9 @@ namespace EndlessRunner.Game
             currentGameState = gameState;
             UpdateTimeScale();
 
-            // broadcast an event to indicate game state has been update
+            eventManager.GameEvents.OnGameStateUpdated.Broadcast(currentGameState);
         }
 
-        private void UpdateTimeScale()
-        {
-            Time.timeScale = currentGameState == GameState.IN_GAME ? 1f : 0f;
-
-            Debug.Log("Game state has been updated: " + currentGameState);
-            Debug.Log("Current time scale is: " + Time.timeScale);
-        }
+        private void UpdateTimeScale() => Time.timeScale = currentGameState == GameState.IN_GAME ? 1f : 0f;
     }
 }
