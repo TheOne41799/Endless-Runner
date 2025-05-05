@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8349bf53d5df899439c0d7bc74ebe35b, type: 3}
-  m_Name: Game Data
+  m_Script: {fileID: 11500000, guid: fd3f1b313c143a64c88d7d18bd913e3c, type: 3}
+  m_Name: UI Data
   m_EditorClassIdentifier: 
-  gameManagerPrefab: {fileID: 7081100358174163253, guid: 49209d1f5a1aeb449aa6a588b634d588, type: 3}
-  uiManagerPrefab: {fileID: 2975003446590095795, guid: ba5f01ca6d999344792f715d03afce72, type: 3}
+  uiMainMenuPrefab: {fileID: 5627342136392552256, guid: b19f522230784bd4c9c3957b5e3e186d, type: 3}

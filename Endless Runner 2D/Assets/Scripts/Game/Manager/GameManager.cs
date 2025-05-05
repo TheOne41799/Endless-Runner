@@ -14,15 +14,15 @@ namespace EndlessRunner.Game
         public void InitializeManager(IEventManager eventManager)
         {
             SetManagerDependencies(eventManager);
-            RegisterEventListeners();
             SetGameState(GameState.MAIN_MENU);
+            RegisterEventListeners();
         }
 
         private void SetManagerDependencies(IEventManager eventManager) => this.eventManager = eventManager;
 
         private void RegisterEventListeners()
         {
-            
+            eventManager.UIEvents.OnStartButtonClicked.AddListener(StartGame);
         }
 
         private void SetGameState(GameState gameState)
@@ -36,5 +36,7 @@ namespace EndlessRunner.Game
         }
 
         private void UpdateTimeScale() => Time.timeScale = currentGameState == GameState.IN_GAME ? 1f : 0f;
+
+        private void StartGame() => SetGameState(GameState.IN_GAME);
     }
 }
