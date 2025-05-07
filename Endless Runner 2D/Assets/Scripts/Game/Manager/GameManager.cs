@@ -23,6 +23,7 @@ namespace EndlessRunner.Game
         private void RegisterEventListeners()
         {
             eventManager.UIEvents.OnStartButtonClicked.AddListener(StartGame);
+            eventManager.PlayerEvents.OnHitByObstacle.AddListener(GameOver);
         }
 
         private void SetGameState(GameState gameState)
@@ -38,5 +39,6 @@ namespace EndlessRunner.Game
         private void UpdateTimeScale() => Time.timeScale = currentGameState == GameState.IN_GAME ? 1f : 0f;
 
         private void StartGame() => SetGameState(GameState.IN_GAME);
+        private void GameOver() => SetGameState(GameState.GAME_OVER);
     }
 }

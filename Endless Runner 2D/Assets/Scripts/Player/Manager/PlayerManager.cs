@@ -47,6 +47,9 @@ namespace EndlessRunner.Player
                     //because the game state can also be INGAME when going from pause menu
                     if(playerController == null) CreatePlayerController();
                     break;
+                case GameState.GAME_OVER:
+                    OnGameOver();
+                    break;
             }
         }
 
@@ -57,5 +60,11 @@ namespace EndlessRunner.Player
 
         private void OnObstacleAvoided(int scoreValue) => playerController.OnObstacleAvoided(scoreValue);
         public void OnScoreUpdated(int playerScore) => eventManager.PlayerEvents.OnScoreUpdated.Invoke(playerScore);
+        public void OnHitByObstacle() => eventManager.PlayerEvents.OnHitByObstacle.Invoke();
+        public void OnGameOver()
+        {
+            playerController?.OnGameOver();
+            playerController = null;
+        }
     }
 }

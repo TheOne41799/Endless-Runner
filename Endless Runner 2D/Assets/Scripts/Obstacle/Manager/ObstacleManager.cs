@@ -55,11 +55,16 @@ namespace EndlessRunner.Obstacle
                 case GameState.PAUSE_MENU:
                     obstacleSpawner?.StopSpawning();
                     break;
+                case GameState.GAME_OVER:
+                    obstacleSpawner?.StopSpawning();
+                    HideAllActiveObstacles();
+                    break;
             }
         }
 
         public ObstaclePool GetPool() => obstaclePool;
         public ObstacleData GetData() => obstacleData;
         public void OnObstacleAvoided(int scoreValue) => eventManager.ObstacleEvents.OnObstacleAvoided.Invoke(scoreValue);
+        private void HideAllActiveObstacles() => obstaclePool?.ReleaseAllActiveObstacles();
     }
 }

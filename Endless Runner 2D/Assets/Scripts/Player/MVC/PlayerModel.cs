@@ -79,5 +79,4 @@ namespace EndlessRunner.Player
             playerController.OnScoreUpdated(playerScore);
         }
     }
-
 }
