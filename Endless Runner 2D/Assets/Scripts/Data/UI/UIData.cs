@@ -7,7 +7,9 @@ namespace EndlessRunner.Data
     public class UIData : ScriptableObject
     {
         [SerializeField] private UIMainMenu uiMainMenuPrefab;
+        [SerializeField] private UIHUD uiHUDPrefab;
 
         public UIMainMenu UIMainMenuPrefab => uiMainMenuPrefab;
+        public UIHUD UIHUDPrefab => uiHUDPrefab;
     }
 }

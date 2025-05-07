@@ -13,6 +13,7 @@ namespace EndlessRunner.UI
         private IEventManager eventManager;
 
         private UIMainMenuController uiMainMenuController;
+        private UIHUDController uiHUDController;
 
         public void InitializeManager(IEventManager eventManager)
         {
@@ -27,11 +28,13 @@ namespace EndlessRunner.UI
         private void CreateControllers()
         {
             uiMainMenuController = new UIMainMenuController(uiData, uiCanvas, this);
+            uiHUDController = new UIHUDController(uiData, uiCanvas, this);
         }
 
         private void InitializeControllers()
         {
             uiMainMenuController.InitializeController();
+            uiHUDController.InitializeController();
         }
 
         private void RegisterEventListeners()
@@ -43,6 +46,7 @@ namespace EndlessRunner.UI
         private void OnGameStateUpdated(GameState currentGameState)
         {
             HideAllUIs();
+            Debug.Log("here");
 
             switch (currentGameState)
             {
@@ -50,18 +54,20 @@ namespace EndlessRunner.UI
                     uiMainMenuController.ShowUI();
                     break;
                 case GameState.IN_GAME:
+                    uiHUDController.ShowUI();
                     break;
             }
         }
 
         private void HideAllUIs()
         {
-            uiMainMenuController.HideUI();
+            uiMainMenuController?.HideUI();
+            uiHUDController?.HideUI();
         }
 
         public void OnStartButtonClicked() => eventManager.UIEvents.OnStartButtonClicked.Invoke();
 
-        public void OnScoreUpdated(int playerScore) => Debug.Log("Player Score: " + playerScore);
+        public void OnScoreUpdated(int playerScore) => uiHUDController.OnScoreUpdated(playerScore);
     }
 }
 

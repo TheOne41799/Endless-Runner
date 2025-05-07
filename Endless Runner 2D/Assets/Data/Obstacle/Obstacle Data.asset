@@ -18,7 +18,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4d7f7b238826190449fd74179a2afa92, type: 3}
   spawnPositions:
   - {x: 16, y: -4, z: 0}
-  - {x: 16, y: -6, z: 0}
+  - {x: 16, y: -2, z: 0}
   obstacleSpawnTime: 1
   moveSpeed: 5
   scoreValue: 1
