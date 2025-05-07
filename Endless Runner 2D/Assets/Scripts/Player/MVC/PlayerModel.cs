@@ -13,7 +13,7 @@ namespace EndlessRunner.Player
         private bool isJumping;
         private float jumpTimer;
 
-        private bool applyJump; // tells view to apply velocity
+        private bool applyJump;
 
         public PlayerModel(PlayerData playerData)
         {
@@ -30,7 +30,6 @@ namespace EndlessRunner.Player
         {
             this.isGrounded = isGrounded;
 
-            // Reset jump when landed
             if (isGrounded)
             {
                 isJumping = false;
@@ -42,13 +41,13 @@ namespace EndlessRunner.Player
         {
             applyJump = false;
 
-            if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+            if (isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
             {
                 isJumping = true;
                 jumpTimer = 0f;
                 applyJump = true;
             }
-            else if (isJumping && Input.GetKey(KeyCode.Space))
+            else if (isJumping && Input.GetKey(KeyCode.UpArrow))
             {
                 if (jumpTimer < jumpTime)
                 {
@@ -61,7 +60,7 @@ namespace EndlessRunner.Player
                 }
             }
 
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.UpArrow))
             {
                 isJumping = false;
             }

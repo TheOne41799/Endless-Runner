@@ -17,7 +17,6 @@ namespace EndlessRunner.Player
         public void InitializeManager(IEventManager eventManager)
         {
             SetManagerDependencies(eventManager);
-            InitializeController();
             RegisterEventListeners();
         }
 
@@ -26,11 +25,6 @@ namespace EndlessRunner.Player
         private void CreatePlayerController()
         {
             playerController = new PlayerController(playerData);
-        }
-
-        private void InitializeController()
-        {
-            
         }
 
         private void RegisterEventListeners()

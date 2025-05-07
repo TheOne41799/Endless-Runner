@@ -17,28 +17,32 @@ namespace EndlessRunner.Inputs
         public void Enable()
         {
             gameInputActionsAsset?.Player.Enable();
-            Debug.Log("Enable");
+            //Debug.Log("Enable");
+
+            gameInputActionsAsset.Player.Jump.performed += OnJumpPerformedCallback;
         }
 
         public void Disable()
         {
             gameInputActionsAsset?.Player.Disable();
-            Debug.Log("Disable");
+            //Debug.Log("Disable");
+
+            gameInputActionsAsset.Player.Jump.performed -= OnJumpPerformedCallback;
         }
 
-        private void OnMovePerformedCallback(InputAction.CallbackContext ctx)
+        private void OnJumpPerformedCallback(InputAction.CallbackContext ctx)
         {
-            
+            //Debug.Log("Jump");
         }
 
-        private void OnMoveCanceledCallback(InputAction.CallbackContext ctx)
+        private void OnJumpCanceledCallback(InputAction.CallbackContext ctx)
         {
-            
+
         }
 
         private void HandleMoveInput()
         {
-            
+
         }
     }
 }
