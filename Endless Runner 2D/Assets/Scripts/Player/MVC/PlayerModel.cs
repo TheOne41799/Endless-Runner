@@ -5,6 +5,7 @@ namespace EndlessRunner.Player
 {
     public class PlayerModel
     {
+        private PlayerController playerController;
         private PlayerData playerData;
         private float jumpForce;
         private float jumpTime;
@@ -14,16 +15,19 @@ namespace EndlessRunner.Player
         private float jumpTimer;
 
         private bool applyJump;
+        private int playerScore;
 
-        public PlayerModel(PlayerData playerData)
+        public PlayerModel(PlayerData playerData, PlayerController playerController)
         {
             this.playerData = playerData;
+            this.playerController = playerController;
         }
 
         public void InitializeModel()
         {
             this.jumpForce = playerData.JumpForce;
             this.jumpTime = playerData.JumpTime;
+            playerScore = 0;
         }
 
         public void SetIsGrounded(bool isGrounded)
@@ -68,6 +72,12 @@ namespace EndlessRunner.Player
 
         public bool ShouldApplyJump => applyJump;
         public float GetJumpForce => jumpForce;
+
+        public void OnObstacleAvoided(int scoreValue)
+        {
+            playerScore += scoreValue;
+            playerController.OnScoreUpdated(playerScore);
+        }
     }
 
 }

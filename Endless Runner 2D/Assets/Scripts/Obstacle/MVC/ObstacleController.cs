@@ -5,22 +5,22 @@ namespace EndlessRunner.Obstacle
 {
     public class ObstacleController
     {
+        private ObstacleManager obstacleManager;
         private ObstacleData obstacleData;
-        private Transform parentTransform;
         private ObstacleModel obstacleModel;
         private ObstacleView obstacleView;
 
-        public ObstacleController(ObstacleData obstacleData, Transform parentTransform)
+        public ObstacleController(ObstacleData obstacleData, ObstacleManager obstacleManager)
         {
             this.obstacleData = obstacleData;
-            this.parentTransform = parentTransform;
+            this.obstacleManager = obstacleManager;
         }
 
         public void CreateModel() => obstacleModel = new ObstacleModel(obstacleData);
 
         public void CreateView() => obstacleView = GameObject.Instantiate<ObstacleView>(
                                                     obstacleData.ObstacleViewPrefab,
-                                                    parentTransform);
+                                                    obstacleManager.transform);
 
         /*public void CreateView() => obstacleView = GameObject.Instantiate<ObstacleView>(
                                                     obstacleData.ObstacleViewPrefab,
@@ -51,10 +51,11 @@ namespace EndlessRunner.Obstacle
         public void Deactivate()
         {
             obstacleView.gameObject.SetActive(false);
-            ObstacleManager manager = parentTransform.GetComponent<ObstacleManager>();
-            manager.GetPool().ReleaseObstacle(this);
+            //ObstacleManager manager = parentTransform.GetComponent<ObstacleManager>();
+            obstacleManager.GetPool().ReleaseObstacle(this);
         }
 
         public Vector2 GetVelocity() => obstacleModel.GetVelocity();
+        public void OnObstacleAvoided() => obstacleManager.OnObstacleAvoided(obstacleModel.ScoreValue);
     }
 }

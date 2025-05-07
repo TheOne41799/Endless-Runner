@@ -4,7 +4,7 @@ namespace EndlessRunner.Obstacle
 {
     public class ObstacleView : MonoBehaviour
     {
-        private ObstacleController controller;
+        private ObstacleController obstacleController;
         private SpriteRenderer spriteRenderer;
 
         private void Awake()
@@ -12,9 +12,9 @@ namespace EndlessRunner.Obstacle
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 
-        public void SetController(ObstacleController controller)
+        public void SetController(ObstacleController obstacleController)
         {
-            this.controller = controller;
+            this.obstacleController = obstacleController;
         }
 
         public void InitializeView()
@@ -35,9 +35,9 @@ namespace EndlessRunner.Obstacle
 
         private void Update()
         {
-            if (controller != null)
+            if (obstacleController != null)
             {
-                transform.Translate(controller.GetVelocity() * Time.deltaTime);
+                transform.Translate(obstacleController.GetVelocity() * Time.deltaTime);
             }
         }
 
@@ -45,7 +45,8 @@ namespace EndlessRunner.Obstacle
         {
             if (collision.CompareTag("Despawn"))
             {
-                controller.Deactivate();
+                obstacleController.Deactivate();
+                obstacleController.OnObstacleAvoided();
             }
         }
     }

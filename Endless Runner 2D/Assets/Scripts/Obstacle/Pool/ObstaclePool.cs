@@ -7,14 +7,14 @@ namespace EndlessRunner.Obstacle
     public class ObstaclePool
     {
         private ObstacleData obstacleData;
-        private Transform parentTransform;
+        private ObstacleManager obstacleManager;
 
         private ObjectPool<ObstacleController> obstacleControllers;
 
-        public ObstaclePool(ObstacleData obstacleData, Transform parentTransform)
+        public ObstaclePool(ObstacleData obstacleData, ObstacleManager obstacleManager)
         {
             this.obstacleData = obstacleData;
-            this.parentTransform = parentTransform;
+            this.obstacleManager = obstacleManager;
         }
 
         public void InitializePool()
@@ -27,7 +27,7 @@ namespace EndlessRunner.Obstacle
 
         private ObstacleController CreateController()
         {
-            ObstacleController obstacleController = new ObstacleController(obstacleData, parentTransform);
+            ObstacleController obstacleController = new ObstacleController(obstacleData, obstacleManager);
             obstacleController.CreateModel();
             obstacleController.CreateView();
             return obstacleController;

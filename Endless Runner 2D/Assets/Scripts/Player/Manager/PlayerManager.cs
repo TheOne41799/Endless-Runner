@@ -24,13 +24,14 @@ namespace EndlessRunner.Player
 
         private void CreatePlayerController()
         {
-            playerController = new PlayerController(playerData);
+            playerController = new PlayerController(playerData, this);
             playerController.InitializeController();
         }
 
         private void RegisterEventListeners()
         {
             eventManager.GameEvents.OnGameStateUpdated.AddListener(OnGameStateUpdated);
+            eventManager.ObstacleEvents.OnObstacleAvoided.AddListener(OnObstacleAvoided);
         }
 
         private void OnGameStateUpdated(GameState currentGameState)
@@ -53,5 +54,8 @@ namespace EndlessRunner.Player
         {
             if(currentGameState == GameState.IN_GAME) playerController?.OnUpdate(Time.deltaTime);
         }
+
+        private void OnObstacleAvoided(int scoreValue) => playerController.OnObstacleAvoided(scoreValue);
+        public void OnScoreUpdated(int playerScore) => eventManager.PlayerEvents.OnScoreUpdated.Invoke(playerScore);
     }
 }
