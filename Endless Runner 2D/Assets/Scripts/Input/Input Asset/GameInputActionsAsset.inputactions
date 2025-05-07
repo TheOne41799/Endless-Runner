@@ -1,0 +1,12 @@
+{
+    "name": "GameInputActionsAsset",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "a7729120-c647-48e9-a755-fa55c3aa2653",
+            "actions": [],
+            "bindings": []
+        }
+    ],
+    "controlSchemes": []
+}

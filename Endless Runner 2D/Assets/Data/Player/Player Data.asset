@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a88b367bebf39dc4ca4ed5bf098f10b7, type: 3}
   m_Name: Player Data
   m_EditorClassIdentifier: 
+  playerViewPrefab: {fileID: 351609936069925733, guid: a9b2440c4bb89624880148e22b58d979, type: 3}
+  spawnPosition: {x: 0, y: 0, z: 0}

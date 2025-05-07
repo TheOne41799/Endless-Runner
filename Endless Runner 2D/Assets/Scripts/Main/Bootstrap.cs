@@ -2,6 +2,7 @@ using EndlessRunner.Common;
 using EndlessRunner.Data;
 using EndlessRunner.Event;
 using EndlessRunner.Game;
+using EndlessRunner.Inputs;
 using EndlessRunner.Player;
 using EndlessRunner.UI;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace EndlessRunner.Main
         private IEventManager eventManager;
 
         private IManager gameManager;
+        private IManager inputManager;
         private IManager uiManager;
         private IManager playerManager;
 
@@ -49,6 +51,7 @@ namespace EndlessRunner.Main
         private void CreateManagers()
         {
             gameManager = GameObject.Instantiate<GameManager>(gameData.GameManagerPrefab, this.transform);
+            inputManager = GameObject.Instantiate<InputManager>(gameData.InputManagerPrefab, this.transform);
             uiManager = GameObject.Instantiate<UIManager>(gameData.UIManagerPrefab, this.transform);
             playerManager = GameObject.Instantiate<PlayerManager>(gameData.PlayerManagerPrefab, this.transform);
         }
@@ -56,6 +59,7 @@ namespace EndlessRunner.Main
         private void SetManagerDependencies()
         {
             gameManager.InitializeManager(eventManager);
+            inputManager.InitializeManager(eventManager);
             uiManager.InitializeManager(eventManager);
             playerManager.InitializeManager(eventManager);
         }
