@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88b367bebf39dc4ca4ed5bf098f10b7, type: 3}
+  m_Name: Player Data
+  m_EditorClassIdentifier: 
+  playerViewPrefab: {fileID: 351609936069925733, guid: a9b2440c4bb89624880148e22b58d979, type: 3}
+  spawnPosition: {x: -6, y: 0, z: 0}
+  jumpForce: 15
+  groundDistance: 0.25
+  jumpTime: 0.3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  gravityScale: 10
