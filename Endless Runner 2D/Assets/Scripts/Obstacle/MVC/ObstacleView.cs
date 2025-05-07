@@ -43,11 +43,9 @@ namespace EndlessRunner.Obstacle
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("asads");
             if (collision.CompareTag("Despawn"))
             {
                 controller.Deactivate();
-                Debug.Log("asads");
             }
         }
     }
