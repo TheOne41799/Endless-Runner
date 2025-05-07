@@ -11,13 +11,13 @@ namespace EndlessRunner.Player
         private LayerMask groundLayer;
         private float groundDistance;
 
-        private Vector2 playerVelocity;
+        private bool jumpRequested = false;
+        private float jumpForce;
 
         public void InitializeView(PlayerData playerData)
         {
             this.groundLayer = playerData.GroundLayer;
             this.groundDistance = playerData.GroundDistance;
-
             playerRB.gravityScale = playerData.GravityScale;
         }
 
@@ -26,15 +26,19 @@ namespace EndlessRunner.Player
             return Physics2D.OverlapCircle(feetPosition.position, groundDistance, groundLayer);
         }
 
-        public void UpdateVelocity(Vector2 playerVelocity)
+        public void RequestJump(float jumpForce)
         {
-            if (playerVelocity == Vector2.zero) return;
-            this.playerVelocity = playerVelocity;
+            jumpRequested = true;
+            this.jumpForce = jumpForce;
         }
 
         private void FixedUpdate()
         {
-            playerRB.linearVelocity = playerVelocity;
+            if (jumpRequested)
+            {
+                playerRB.linearVelocity = new Vector2(playerRB.linearVelocity.x, jumpForce);
+                jumpRequested = false;
+            }
         }
     }
 }

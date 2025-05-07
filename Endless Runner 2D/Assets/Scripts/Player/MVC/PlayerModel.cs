@@ -5,19 +5,15 @@ namespace EndlessRunner.Player
 {
     public class PlayerModel
     {
-        #region Values to be fetched from Player Data
         private PlayerData playerData;
         private float jumpForce;
         private float jumpTime;
-        #endregion
 
-        #region Other variables
-        private bool isGrounded = false;
-        private bool isJumping = false;
+        private bool isGrounded;
+        private bool isJumping;
         private float jumpTimer;
 
-        private Vector2 playerVelocity;
-        #endregion
+        private bool applyJump; // tells view to apply velocity
 
         public PlayerModel(PlayerData playerData)
         {
@@ -33,22 +29,30 @@ namespace EndlessRunner.Player
         public void SetIsGrounded(bool isGrounded)
         {
             this.isGrounded = isGrounded;
+
+            // Reset jump when landed
+            if (isGrounded)
+            {
+                isJumping = false;
+                jumpTimer = 0f;
+            }
         }
 
         public void HandleInput(float deltaTime)
         {
+            applyJump = false;
+
             if (isGrounded && Input.GetKeyDown(KeyCode.Space))
             {
                 isJumping = true;
                 jumpTimer = 0f;
-                playerVelocity = Vector2.up * jumpForce;
+                applyJump = true;
             }
-
-            if (isJumping && Input.GetKey(KeyCode.Space))
+            else if (isJumping && Input.GetKey(KeyCode.Space))
             {
                 if (jumpTimer < jumpTime)
                 {
-                    playerVelocity = Vector2.up * jumpForce;
+                    applyJump = true;
                     jumpTimer += deltaTime;
                 }
                 else
@@ -61,17 +65,10 @@ namespace EndlessRunner.Player
             {
                 isJumping = false;
             }
-
-            if (!isJumping)
-            {
-                playerVelocity = Vector2.zero;
-            }
         }
 
-
-        public Vector2 GetPlayerVelocity()
-        {
-            return playerVelocity;
-        }
+        public bool ShouldApplyJump => applyJump;
+        public float GetJumpForce => jumpForce;
     }
+
 }

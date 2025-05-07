@@ -23,7 +23,11 @@ namespace EndlessRunner.Player
             playerModel.SetIsGrounded(isGrounded);
 
             playerModel.HandleInput(deltaTime);
-            playerView.UpdateVelocity(playerModel.GetPlayerVelocity());
+
+            if (playerModel.ShouldApplyJump)
+            {
+                playerView.RequestJump(playerModel.GetJumpForce);
+            }
         }
     }
 }
