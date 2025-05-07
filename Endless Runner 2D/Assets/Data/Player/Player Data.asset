@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Player Data
   m_EditorClassIdentifier: 
   playerViewPrefab: {fileID: 351609936069925733, guid: a9b2440c4bb89624880148e22b58d979, type: 3}
-  spawnPosition: {x: -6, y: -3.5, z: 0}
-  jumpForce: 2
+  spawnPosition: {x: -6, y: 0, z: 0}
+  jumpForce: 15
   groundDistance: 0.25
   jumpTime: 0.3
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  gravityScale: 5
+  gravityScale: 10
