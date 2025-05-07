@@ -21,3 +21,4 @@ MonoBehaviour:
   - {x: 16, y: -6, z: 0}
   obstacleSpawnTime: 1
   moveSpeed: 5
+  scoreValue: 1

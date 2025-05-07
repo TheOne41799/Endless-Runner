@@ -5,18 +5,20 @@ namespace EndlessRunner.Player
 {
     public class PlayerController
     {
+        private PlayerManager playerManager;
         private PlayerData playerData;
         private PlayerModel playerModel;
         private PlayerView playerView;
 
-        public PlayerController(PlayerData playerData)
+        public PlayerController(PlayerData playerData, PlayerManager playerManager)
         {
             this.playerData = playerData;
+            this.playerManager = playerManager;
         }
 
         public void InitializeController()
         {
-            playerModel = new PlayerModel(playerData);
+            playerModel = new PlayerModel(playerData, this);
             playerView = GameObject.Instantiate<PlayerView>(playerData.PlayerViewPrefab, playerData.SpawnPosition, Quaternion.identity);
 
             playerView.InitializeView(playerData);
@@ -35,5 +37,8 @@ namespace EndlessRunner.Player
                 playerView.RequestJump(playerModel.GetJumpForce);
             }
         }
+
+        public void OnObstacleAvoided(int scoreValue) => playerModel.OnObstacleAvoided(scoreValue);
+        public void OnScoreUpdated(int playerScore) => playerManager.OnScoreUpdated(playerScore);
     }
 }

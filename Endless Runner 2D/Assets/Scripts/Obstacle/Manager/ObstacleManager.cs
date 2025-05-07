@@ -25,7 +25,7 @@ namespace EndlessRunner.Obstacle
 
         private void CreateObstaclePool() 
         {
-            obstaclePool = new ObstaclePool(obstacleData, this.transform);
+            obstaclePool = new ObstaclePool(obstacleData, this);
             obstaclePool.InitializePool();
         }
 
@@ -60,5 +60,6 @@ namespace EndlessRunner.Obstacle
 
         public ObstaclePool GetPool() => obstaclePool;
         public ObstacleData GetData() => obstacleData;
+        public void OnObstacleAvoided(int scoreValue) => eventManager.ObstacleEvents.OnObstacleAvoided.Invoke(scoreValue);
     }
 }

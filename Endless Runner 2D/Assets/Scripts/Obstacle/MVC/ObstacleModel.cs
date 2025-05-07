@@ -7,6 +7,7 @@ namespace EndlessRunner.Obstacle
     {
         private ObstacleData obstacleData;
         private float moveSpeed;
+        public int ScoreValue {  get; private set; }
 
         public ObstacleModel(ObstacleData obstacleData)
         {
@@ -16,6 +17,7 @@ namespace EndlessRunner.Obstacle
         public void InitializeModel()
         {
             this.moveSpeed = obstacleData.MoveSpeed;
+            this.ScoreValue = obstacleData.ScoreValue;
         }
 
         public void ResetModel()

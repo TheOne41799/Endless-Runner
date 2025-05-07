@@ -37,6 +37,7 @@ namespace EndlessRunner.UI
         private void RegisterEventListeners()
         {
             eventManager.GameEvents.OnGameStateUpdated.AddListener(OnGameStateUpdated);
+            eventManager.PlayerEvents.OnScoreUpdated.AddListener(OnScoreUpdated);
         }
 
         private void OnGameStateUpdated(GameState currentGameState)
@@ -59,6 +60,8 @@ namespace EndlessRunner.UI
         }
 
         public void OnStartButtonClicked() => eventManager.UIEvents.OnStartButtonClicked.Invoke();
+
+        public void OnScoreUpdated(int playerScore) => Debug.Log("Player Score: " + playerScore);
     }
 }
 
