@@ -41,5 +41,10 @@ namespace EndlessRunner.Player
         public void OnObstacleAvoided(int scoreValue) => playerModel.OnObstacleAvoided(scoreValue);
         public void OnScoreUpdated(int playerScore) => playerManager.OnScoreUpdated(playerScore);
         public void OnHitByObstacle() => playerManager.OnHitByObstacle();
+        public void OnGameOver()
+        {
+            playerModel = null;
+            GameObject.Destroy(playerView.gameObject);
+        }
     }
 }

@@ -48,7 +48,7 @@ namespace EndlessRunner.Player
                     if(playerController == null) CreatePlayerController();
                     break;
                 case GameState.GAME_OVER:
-                    Debug.Log("Game Over");
+                    OnGameOver();
                     break;
             }
         }
@@ -61,5 +61,10 @@ namespace EndlessRunner.Player
         private void OnObstacleAvoided(int scoreValue) => playerController.OnObstacleAvoided(scoreValue);
         public void OnScoreUpdated(int playerScore) => eventManager.PlayerEvents.OnScoreUpdated.Invoke(playerScore);
         public void OnHitByObstacle() => eventManager.PlayerEvents.OnHitByObstacle.Invoke();
+        public void OnGameOver()
+        {
+            playerController?.OnGameOver();
+            playerController = null;
+        }
     }
 }
