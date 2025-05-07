@@ -46,7 +46,6 @@ namespace EndlessRunner.UI
         private void OnGameStateUpdated(GameState currentGameState)
         {
             HideAllUIs();
-            Debug.Log("here");
 
             switch (currentGameState)
             {
