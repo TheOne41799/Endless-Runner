@@ -1,3 +1,4 @@
+using EndlessRunner.Common;
 using UnityEngine;
 
 namespace EndlessRunner.Obstacle
@@ -47,6 +48,13 @@ namespace EndlessRunner.Obstacle
             {
                 obstacleController.Deactivate();
                 obstacleController.OnObstacleAvoided();
+            }
+
+            IPlayer player = collision.GetComponentInParent<IPlayer>();
+
+            if (player != null)
+            {
+                player.OnHitByObstacle();
             }
         }
     }

@@ -1,9 +1,10 @@
+using EndlessRunner.Common;
 using EndlessRunner.Data;
 using UnityEngine;
 
 namespace EndlessRunner.Player
 {
-    public class PlayerView : MonoBehaviour
+    public class PlayerView : MonoBehaviour, IPlayer
     {
         [SerializeField] private Rigidbody2D playerRB;
         [SerializeField] private Transform feetPosition;
@@ -39,6 +40,11 @@ namespace EndlessRunner.Player
                 playerRB.linearVelocity = new Vector2(playerRB.linearVelocity.x, jumpForce);
                 jumpRequested = false;
             }
+        }
+
+        public void OnHitByObstacle()
+        {
+            Debug.Log("Hit by obstacle");
         }
     }
 }
