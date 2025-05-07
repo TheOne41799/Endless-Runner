@@ -9,14 +9,16 @@ namespace EndlessRunner.Player
         [SerializeField] private Rigidbody2D playerRB;
         [SerializeField] private Transform feetPosition;
 
+        private PlayerController playerController;
         private LayerMask groundLayer;
         private float groundDistance;
 
         private bool jumpRequested = false;
         private float jumpForce;
 
-        public void InitializeView(PlayerData playerData)
+        public void InitializeView(PlayerData playerData, PlayerController playerController)
         {
+            this.playerController = playerController;
             this.groundLayer = playerData.GroundLayer;
             this.groundDistance = playerData.GroundDistance;
             playerRB.gravityScale = playerData.GravityScale;
@@ -42,9 +44,6 @@ namespace EndlessRunner.Player
             }
         }
 
-        public void OnHitByObstacle()
-        {
-            Debug.Log("Hit by obstacle");
-        }
+        public void OnHitByObstacle() => playerController.OnHitByObstacle();
     }
 }

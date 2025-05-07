@@ -21,7 +21,7 @@ namespace EndlessRunner.Player
             playerModel = new PlayerModel(playerData, this);
             playerView = GameObject.Instantiate<PlayerView>(playerData.PlayerViewPrefab, playerData.SpawnPosition, Quaternion.identity);
 
-            playerView.InitializeView(playerData);
+            playerView.InitializeView(playerData, this);
             playerModel.InitializeModel();
         }
 
@@ -40,5 +40,6 @@ namespace EndlessRunner.Player
 
         public void OnObstacleAvoided(int scoreValue) => playerModel.OnObstacleAvoided(scoreValue);
         public void OnScoreUpdated(int playerScore) => playerManager.OnScoreUpdated(playerScore);
+        public void OnHitByObstacle() => playerManager.OnHitByObstacle();
     }
 }
