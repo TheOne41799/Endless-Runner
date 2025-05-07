@@ -25,6 +25,7 @@ namespace EndlessRunner.Player
         private void CreatePlayerController()
         {
             playerController = new PlayerController(playerData);
+            playerController.InitializeController();
         }
 
         private void RegisterEventListeners()

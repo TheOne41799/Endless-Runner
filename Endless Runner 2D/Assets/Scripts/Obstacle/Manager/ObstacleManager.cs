@@ -13,11 +13,11 @@ namespace EndlessRunner.Obstacle
         private GameState currentGameState;
 
         private ObstaclePool obstaclePool;
+        private ObstacleSpawner obstacleSpawner;
 
         public void InitializeManager(IEventManager eventManager)
         {
             SetManagerDependencies(eventManager);
-            CreateObstaclePool();
             RegisterEventListeners();
         }
 
@@ -25,7 +25,13 @@ namespace EndlessRunner.Obstacle
 
         private void CreateObstaclePool() 
         {
+            obstaclePool = new ObstaclePool(obstacleData, this.transform);
+            obstaclePool.InitializePool();
+        }
 
+        private void CreateObstacleSpawner()
+        {
+            obstacleSpawner = new ObstacleSpawner(this);
         }
 
         private void RegisterEventListeners()
@@ -42,13 +48,17 @@ namespace EndlessRunner.Obstacle
                 case GameState.MAIN_MENU:
                     break;
                 case GameState.IN_GAME:
+                    if (obstaclePool == null) CreateObstaclePool();
+                    if (obstacleSpawner == null) CreateObstacleSpawner();
+                    obstacleSpawner.StartSpawning();
+                    break;
+                case GameState.PAUSE_MENU:
+                    obstacleSpawner?.StopSpawning();
                     break;
             }
         }
 
-        private void Update()
-        {
-            
-        }
+        public ObstaclePool GetPool() => obstaclePool;
+        public ObstacleData GetData() => obstacleData;
     }
 }

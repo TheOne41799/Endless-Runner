@@ -7,7 +7,15 @@ namespace EndlessRunner.Data
     public class ObstacleData : ScriptableObject
     {
         [SerializeField] private ObstacleView obstacleViewPrefab;
+        [SerializeField] private Sprite[] obstacleSprites;
+        [SerializeField] private Vector3[] spawnPositions;
+        [SerializeField] private float obstacleSpawnTime;
+        [SerializeField] private float moveSpeed;
 
         public ObstacleView ObstacleViewPrefab => obstacleViewPrefab;
+        public Sprite[] ObstacleSprites => obstacleSprites;
+        public Vector3[] SpawnPositions => spawnPositions;
+        public float ObstacleSpawnTime => obstacleSpawnTime;
+        public float MoveSpeed => moveSpeed;
     }
 }
