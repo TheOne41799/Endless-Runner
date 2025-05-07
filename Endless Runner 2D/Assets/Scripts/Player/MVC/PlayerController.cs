@@ -5,10 +5,16 @@ namespace EndlessRunner.Player
 {
     public class PlayerController
     {
+        private PlayerData playerData;
         private PlayerModel playerModel;
         private PlayerView playerView;
 
         public PlayerController(PlayerData playerData)
+        {
+            this.playerData = playerData;
+        }
+
+        public void InitializeController()
         {
             playerModel = new PlayerModel(playerData);
             playerView = GameObject.Instantiate<PlayerView>(playerData.PlayerViewPrefab, playerData.SpawnPosition, Quaternion.identity);

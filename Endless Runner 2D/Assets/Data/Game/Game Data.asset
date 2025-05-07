@@ -16,3 +16,4 @@ MonoBehaviour:
   inputManagerPrefab: {fileID: 2804461847756518030, guid: cabcd0ab2b971cd4681b998286356580, type: 3}
   uiManagerPrefab: {fileID: 2975003446590095795, guid: ba5f01ca6d999344792f715d03afce72, type: 3}
   playerManagerPrefab: {fileID: 631466894181228113, guid: 7181be5cc25f0474c8fb24625bdd6200, type: 3}
+  obstacleManagerPrefab: {fileID: 8017952777700914226, guid: a10531c732ffb974a9b20347bf192cf3, type: 3}

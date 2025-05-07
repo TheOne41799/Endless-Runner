@@ -3,6 +3,7 @@ using EndlessRunner.Data;
 using EndlessRunner.Event;
 using EndlessRunner.Game;
 using EndlessRunner.Inputs;
+using EndlessRunner.Obstacle;
 using EndlessRunner.Player;
 using EndlessRunner.UI;
 using UnityEngine;
@@ -22,6 +23,7 @@ namespace EndlessRunner.Main
         private IManager inputManager;
         private IManager uiManager;
         private IManager playerManager;
+        private IManager obstacleManager;
 
         private void Awake()
         {
@@ -54,6 +56,7 @@ namespace EndlessRunner.Main
             inputManager = GameObject.Instantiate<InputManager>(gameData.InputManagerPrefab, this.transform);
             uiManager = GameObject.Instantiate<UIManager>(gameData.UIManagerPrefab, this.transform);
             playerManager = GameObject.Instantiate<PlayerManager>(gameData.PlayerManagerPrefab, this.transform);
+            obstacleManager = GameObject.Instantiate<ObstacleManager>(gameData.ObstacleManagerPrefab, this.transform);
         }
 
         private void SetManagerDependencies()
@@ -62,6 +65,7 @@ namespace EndlessRunner.Main
             inputManager.InitializeManager(eventManager);
             uiManager.InitializeManager(eventManager);
             playerManager.InitializeManager(eventManager);
+            obstacleManager.InitializeManager(eventManager);
         }
     }
 }

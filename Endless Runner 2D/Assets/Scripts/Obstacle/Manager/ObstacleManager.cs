@@ -3,16 +3,17 @@ using EndlessRunner.Data;
 using EndlessRunner.Event;
 using UnityEngine;
 
-namespace EndlessRunner.Player
+namespace EndlessRunner.Obstacle
 {
-    public class PlayerManager : MonoBehaviour, IManager
+    public class ObstacleManager : MonoBehaviour, IManager
     {
-        [SerializeField] private PlayerData playerData;
+        [SerializeField] private ObstacleData obstacleData;
 
         private IEventManager eventManager;
         private GameState currentGameState;
 
-        private PlayerController playerController;
+        private ObstaclePool obstaclePool;
+        private ObstacleSpawner obstacleSpawner;
 
         public void InitializeManager(IEventManager eventManager)
         {
@@ -22,10 +23,15 @@ namespace EndlessRunner.Player
 
         private void SetManagerDependencies(IEventManager eventManager) => this.eventManager = eventManager;
 
-        private void CreatePlayerController()
+        private void CreateObstaclePool() 
         {
-            playerController = new PlayerController(playerData);
-            playerController.InitializeController();
+            obstaclePool = new ObstaclePool(obstacleData, this.transform);
+            obstaclePool.InitializePool();
+        }
+
+        private void CreateObstacleSpawner()
+        {
+            obstacleSpawner = new ObstacleSpawner(this);
         }
 
         private void RegisterEventListeners()
@@ -42,16 +48,17 @@ namespace EndlessRunner.Player
                 case GameState.MAIN_MENU:
                     break;
                 case GameState.IN_GAME:
-                    //test - this is not the correct way to do it
-                    //because the game state can also be INGAME when going from pause menu
-                    if(playerController == null) CreatePlayerController();
+                    if (obstaclePool == null) CreateObstaclePool();
+                    if (obstacleSpawner == null) CreateObstacleSpawner();
+                    obstacleSpawner.StartSpawning();
+                    break;
+                case GameState.PAUSE_MENU:
+                    obstacleSpawner?.StopSpawning();
                     break;
             }
         }
 
-        private void Update()
-        {
-            if(currentGameState == GameState.IN_GAME) playerController?.OnUpdate(Time.deltaTime);
-        }
+        public ObstaclePool GetPool() => obstaclePool;
+        public ObstacleData GetData() => obstacleData;
     }
 }
