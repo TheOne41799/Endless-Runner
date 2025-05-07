@@ -14,6 +14,7 @@ namespace EndlessRunner.UI
 
         private UIMainMenuController uiMainMenuController;
         private UIHUDController uiHUDController;
+        private UIGameOverMenuController uiGameOverMenuController;
 
         public void InitializeManager(IEventManager eventManager)
         {
@@ -29,12 +30,14 @@ namespace EndlessRunner.UI
         {
             uiMainMenuController = new UIMainMenuController(uiData, uiCanvas, this);
             uiHUDController = new UIHUDController(uiData, uiCanvas, this);
+            uiGameOverMenuController = new UIGameOverMenuController(uiData, uiCanvas, this);
         }
 
         private void InitializeControllers()
         {
             uiMainMenuController.InitializeController();
             uiHUDController.InitializeController();
+            uiGameOverMenuController.InitializeController();
         }
 
         private void RegisterEventListeners()
@@ -55,6 +58,9 @@ namespace EndlessRunner.UI
                 case GameState.IN_GAME:
                     uiHUDController.ShowUI();
                     break;
+                case GameState.GAME_OVER:
+                    uiGameOverMenuController?.ShowUI();
+                    break;
             }
         }
 
@@ -62,11 +68,18 @@ namespace EndlessRunner.UI
         {
             uiMainMenuController?.HideUI();
             uiHUDController?.HideUI();
+            uiGameOverMenuController?.HideUI();
         }
 
         public void OnStartButtonClicked() => eventManager.UIEvents.OnStartButtonClicked.Invoke();
 
         public void OnScoreUpdated(int playerScore) => uiHUDController.OnScoreUpdated(playerScore);
+
+
+
+        public void OnRestartGame() => Debug.Log("Restart");
+        public void OnOpenMainMenu() => Debug.Log("Main Menu");
+        public void OnQuitGame() => Debug.Log("Quit");
     }
 }
 

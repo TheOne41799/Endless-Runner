@@ -8,8 +8,10 @@ namespace EndlessRunner.Data
     {
         [SerializeField] private UIMainMenu uiMainMenuPrefab;
         [SerializeField] private UIHUD uiHUDPrefab;
+        [SerializeField] private UIGameOverMenu uiGameOverMenuPrefab;
 
         public UIMainMenu UIMainMenuPrefab => uiMainMenuPrefab;
         public UIHUD UIHUDPrefab => uiHUDPrefab;
+        public UIGameOverMenu UIGameOverMenuPrefab => uiGameOverMenuPrefab;
     }
 }
