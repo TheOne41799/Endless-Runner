@@ -1,6 +1,7 @@
 using EndlessRunner.Common;
 using EndlessRunner.Data;
 using EndlessRunner.Event;
+using System.IO;
 using UnityEngine;
 
 namespace EndlessRunner.Player
@@ -15,12 +16,15 @@ namespace EndlessRunner.Player
         private PlayerController playerController;
 
         private int currentScore;
-        private int highScore = 500;
+        private int highScore;
+
+        private string ScoreFilePath => Path.Combine(Application.persistentDataPath, "scoreData.json");
 
         public void InitializeManager(IEventManager eventManager)
         {
             SetManagerDependencies(eventManager);
             RegisterEventListeners();
+            LoadHighScoreFromJson();
         }
 
         private void SetManagerDependencies(IEventManager eventManager) => this.eventManager = eventManager;
@@ -43,11 +47,8 @@ namespace EndlessRunner.Player
 
             switch (currentGameState)
             {
-                case GameState.MAIN_MENU:
-                    break;
                 case GameState.IN_GAME:
-                    if(playerController == null) CreatePlayerController();
-                    eventManager.PlayerEvents.OnScoreUpdated.Invoke(currentScore);
+                    OnGameStart();
                     break;
                 case GameState.GAME_OVER:
                     OnGameOver();
@@ -58,6 +59,13 @@ namespace EndlessRunner.Player
         private void Update()
         {
             if(currentGameState == GameState.IN_GAME) playerController?.OnUpdate(Time.deltaTime);
+        }
+
+        private void OnGameStart()
+        {
+            if (playerController == null) CreatePlayerController();
+            currentScore = 0;
+            eventManager.PlayerEvents.OnScoreUpdated.Invoke(currentScore);
         }
 
         private void OnObstacleAvoided(int scoreValue) => playerController.OnObstacleAvoided(scoreValue);
@@ -77,8 +85,38 @@ namespace EndlessRunner.Player
 
         private void ResetScoreVariables()
         {
+            UpdateHighscore();
             eventManager.PlayerEvents.OnGameover.Invoke(currentScore, highScore);
-            currentScore = 0;
+        }
+
+        private void UpdateHighscore()
+        {
+            if (highScore < currentScore)
+            {
+                highScore = currentScore;
+                SaveHighScoreToJson();
+            }
+        }
+
+        private void SaveHighScoreToJson()
+        {
+            PlayerScoreData data = new PlayerScoreData { highScore = highScore };
+            string json = JsonUtility.ToJson(data);
+            File.WriteAllText(ScoreFilePath, json);
+        }
+
+        private void LoadHighScoreFromJson()
+        {
+            if (File.Exists(ScoreFilePath))
+            {
+                string json = File.ReadAllText(ScoreFilePath);
+                PlayerScoreData data = JsonUtility.FromJson<PlayerScoreData>(json);
+                highScore = data.highScore;
+            }
+            else
+            {
+                highScore = 0;
+            }
         }
     }
 }
