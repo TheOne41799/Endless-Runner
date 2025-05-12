@@ -6,7 +6,6 @@ using EndlessRunner.Obstacle;
 using EndlessRunner.Player;
 using EndlessRunner.UI;
 using UnityEngine;
-using UnityEngine.VFX;
 
 namespace EndlessRunner.Main
 {

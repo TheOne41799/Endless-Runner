@@ -22,12 +22,6 @@ namespace EndlessRunner.Obstacle
                                                     obstacleData.ObstacleViewPrefab,
                                                     obstacleManager.transform);
 
-        /*public void CreateView() => obstacleView = GameObject.Instantiate<ObstacleView>(
-                                                    obstacleData.ObstacleViewPrefab,
-                                                    obstacleData.SpawnPositions[Random.Range(0, obstacleData.SpawnPositions.Length)].position,
-                                                    Quaternion.identity,
-                                                    parentTransform);*/
-
         public void InitializeController()
         {
             obstacleModel.InitializeModel();
