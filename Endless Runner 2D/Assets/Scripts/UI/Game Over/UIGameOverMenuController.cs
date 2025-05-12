@@ -28,5 +28,11 @@ public class UIGameOverMenuController
     public void OnRestartGame() => uiManager.OnRestartGame();
     public void OnOpenMainMenu() => uiManager.OnOpenMainMenu();
     public void OnQuitGame() => uiManager.OnQuitGame();
+    public void OnGameOver(int finalScore, int highScore)
+    {
+        uiGameOverMenu.OnGameOver(finalScore, highScore);
+    }
+
+
 
 }

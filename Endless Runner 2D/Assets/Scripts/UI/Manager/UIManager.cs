@@ -44,6 +44,7 @@ namespace EndlessRunner.UI
         {
             eventManager.GameEvents.OnGameStateUpdated.AddListener(OnGameStateUpdated);
             eventManager.PlayerEvents.OnScoreUpdated.AddListener(OnScoreUpdated);
+            eventManager.PlayerEvents.OnGameover.AddListener(OnGameOver);
         }
 
         private void OnGameStateUpdated(GameState currentGameState)
@@ -75,9 +76,15 @@ namespace EndlessRunner.UI
 
         public void OnScoreUpdated(int playerScore) => uiHUDController.OnScoreUpdated(playerScore);
 
+        private void OnGameOver(int finalScore, int highScore)
+        {
+            Debug.Log(finalScore);
+            uiGameOverMenuController.OnGameOver(finalScore, highScore);
+        }
 
 
-        public void OnRestartGame() => Debug.Log("Restart");
+
+        public void OnRestartGame() => eventManager.UIEvents.OnStartButtonClicked.Invoke();
         public void OnOpenMainMenu() => Debug.Log("Main Menu");
         public void OnQuitGame() => Debug.Log("Quit");
     }

@@ -36,5 +36,10 @@ namespace EndlessRunner.UI
         private void RestartGame() => controller.OnRestartGame();
         private void OpenMainMenu() => controller.OnOpenMainMenu();
         private void QuitGame() => controller.OnQuitGame();
+        public void OnGameOver(int finalScore, int highScore)
+        {
+            scoreText.text = "Score: " + finalScore;
+            highscoreText.text = "Highscore: " + highScore;
+        }
     }
 }
