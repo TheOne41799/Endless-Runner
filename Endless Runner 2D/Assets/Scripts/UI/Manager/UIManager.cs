@@ -14,6 +14,7 @@ namespace EndlessRunner.UI
 
         private UIMainMenuController uiMainMenuController;
         private UIHUDController uiHUDController;
+        private UIGameOverMenuController uiGameOverMenuController;
 
         public void InitializeManager(IEventManager eventManager)
         {
@@ -29,18 +30,21 @@ namespace EndlessRunner.UI
         {
             uiMainMenuController = new UIMainMenuController(uiData, uiCanvas, this);
             uiHUDController = new UIHUDController(uiData, uiCanvas, this);
+            uiGameOverMenuController = new UIGameOverMenuController(uiData, uiCanvas, this);
         }
 
         private void InitializeControllers()
         {
             uiMainMenuController.InitializeController();
             uiHUDController.InitializeController();
+            uiGameOverMenuController.InitializeController();
         }
 
         private void RegisterEventListeners()
         {
             eventManager.GameEvents.OnGameStateUpdated.AddListener(OnGameStateUpdated);
             eventManager.PlayerEvents.OnScoreUpdated.AddListener(OnScoreUpdated);
+            eventManager.PlayerEvents.OnGameover.AddListener(OnGameOver);
         }
 
         private void OnGameStateUpdated(GameState currentGameState)
@@ -55,6 +59,9 @@ namespace EndlessRunner.UI
                 case GameState.IN_GAME:
                     uiHUDController.ShowUI();
                     break;
+                case GameState.GAME_OVER:
+                    uiGameOverMenuController?.ShowUI();
+                    break;
             }
         }
 
@@ -62,11 +69,24 @@ namespace EndlessRunner.UI
         {
             uiMainMenuController?.HideUI();
             uiHUDController?.HideUI();
+            uiGameOverMenuController?.HideUI();
         }
 
         public void OnStartButtonClicked() => eventManager.UIEvents.OnStartButtonClicked.Invoke();
 
         public void OnScoreUpdated(int playerScore) => uiHUDController.OnScoreUpdated(playerScore);
+
+        private void OnGameOver(int finalScore, int highScore)
+        {
+            Debug.Log(finalScore);
+            uiGameOverMenuController.OnGameOver(finalScore, highScore);
+        }
+
+
+
+        public void OnRestartGame() => eventManager.UIEvents.OnStartButtonClicked.Invoke();
+        public void OnOpenMainMenu() => Debug.Log("Main Menu");
+        public void OnQuitGame() => Debug.Log("Quit");
     }
 }
 

@@ -14,6 +14,9 @@ namespace EndlessRunner.Player
 
         private PlayerController playerController;
 
+        private int currentScore;
+        private int highScore = 500;
+
         public void InitializeManager(IEventManager eventManager)
         {
             SetManagerDependencies(eventManager);
@@ -43,9 +46,8 @@ namespace EndlessRunner.Player
                 case GameState.MAIN_MENU:
                     break;
                 case GameState.IN_GAME:
-                    //test - this is not the correct way to do it
-                    //because the game state can also be INGAME when going from pause menu
                     if(playerController == null) CreatePlayerController();
+                    eventManager.PlayerEvents.OnScoreUpdated.Invoke(currentScore);
                     break;
                 case GameState.GAME_OVER:
                     OnGameOver();
@@ -59,12 +61,24 @@ namespace EndlessRunner.Player
         }
 
         private void OnObstacleAvoided(int scoreValue) => playerController.OnObstacleAvoided(scoreValue);
-        public void OnScoreUpdated(int playerScore) => eventManager.PlayerEvents.OnScoreUpdated.Invoke(playerScore);
+        public void OnScoreUpdated(int playerScore)
+        {
+            currentScore = playerScore;
+            eventManager.PlayerEvents.OnScoreUpdated.Invoke(playerScore);
+        }
+
         public void OnHitByObstacle() => eventManager.PlayerEvents.OnHitByObstacle.Invoke();
         public void OnGameOver()
         {
             playerController?.OnGameOver();
             playerController = null;
+            ResetScoreVariables();
+        }
+
+        private void ResetScoreVariables()
+        {
+            eventManager.PlayerEvents.OnGameover.Invoke(currentScore, highScore);
+            currentScore = 0;
         }
     }
 }

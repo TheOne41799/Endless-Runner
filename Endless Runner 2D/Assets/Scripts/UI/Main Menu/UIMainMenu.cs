@@ -10,6 +10,7 @@ namespace EndlessRunner.UI
 
         private UIMainMenuController uiMainMenuController;
 
+        private void Awake() => ShowUI();
         private void OnEnable()
         {
             startButton.onClick.AddListener(StartGame);
@@ -26,7 +27,7 @@ namespace EndlessRunner.UI
         public void ShowUI() => this.gameObject.SetActive(true);
         public void HideUI() => this.gameObject.SetActive(false);
 
-        public void StartGame() => uiMainMenuController.OnStartButtonClicked();
+        private void StartGame() => uiMainMenuController.OnStartButtonClicked();
 
         public void QuitGame()
         {
