@@ -84,7 +84,6 @@ namespace EndlessRunner.UI
 
 
         public void OnRestartGame() => eventManager.UIEvents.OnStartButtonClicked.Invoke();
-        public void OnOpenMainMenu() => Debug.Log("Main Menu");
         public void OnQuitGame() => Debug.Log("Quit");
     }
 }

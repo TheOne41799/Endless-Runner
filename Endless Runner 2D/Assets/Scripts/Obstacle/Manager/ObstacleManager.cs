@@ -52,9 +52,6 @@ namespace EndlessRunner.Obstacle
                     if (obstacleSpawner == null) CreateObstacleSpawner();
                     obstacleSpawner.StartSpawning();
                     break;
-                case GameState.PAUSE_MENU:
-                    obstacleSpawner?.StopSpawning();
-                    break;
                 case GameState.GAME_OVER:
                     obstacleSpawner?.StopSpawning();
                     HideAllActiveObstacles();

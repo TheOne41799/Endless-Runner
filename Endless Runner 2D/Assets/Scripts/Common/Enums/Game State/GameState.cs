@@ -1,4 +1,4 @@
-using UnityEngine;
+
 
 namespace EndlessRunner.Common
 {
@@ -7,7 +7,6 @@ namespace EndlessRunner.Common
         NONE,
         MAIN_MENU,
         IN_GAME,
-        PAUSE_MENU,
         GAME_OVER
     }
 }

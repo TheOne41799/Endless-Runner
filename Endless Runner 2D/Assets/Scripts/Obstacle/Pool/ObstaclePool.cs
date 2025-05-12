@@ -49,7 +49,7 @@ namespace EndlessRunner.Obstacle
 
         private void OnDestroyController(ObstacleController obstacleController)
         {
-            // later
+            //
         }
 
         public ObstacleController GetObstacle() => obstacleControllers.Get();
