@@ -78,7 +78,6 @@ namespace EndlessRunner.UI
 
         private void OnGameOver(int finalScore, int highScore)
         {
-            Debug.Log(finalScore);
             uiGameOverMenuController.OnGameOver(finalScore, highScore);
         }
 
