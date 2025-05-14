@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fcf93d85c40e3448e652622c161ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parallaxData: {fileID: 11400000, guid: d96c4cb13e15eed41a30eda4395d5e9c, type: 2}

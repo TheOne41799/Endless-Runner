@@ -4,24 +4,30 @@ namespace EndlessRunner.Parallax
 {
     public class ParallaxEffect : MonoBehaviour
     {
-        [SerializeField] private float moveSpeed = 1f;
-        [SerializeField] private float offset;
+        private float moveSpeed;
+        private float offset;
 
         private Vector2 startPosition;
-        private float newXPosition;
 
-        private void Start()
+        private bool isParallaxActive = false;
+
+        public void Initialize(float moveSpeed, float offset)
         {
-            startPosition = transform.position;
+            this.moveSpeed = moveSpeed;
+            this.offset = offset;
+            this.startPosition = transform.position;
         }
 
         private void Update()
         {
-            newXPosition = Mathf.Repeat(Time.time * -moveSpeed, offset);
+            if (!isParallaxActive) return;
+
+            float newXPosition = Mathf.Repeat(Time.time * -moveSpeed, offset);
             transform.position = startPosition + Vector2.right * newXPosition;
         }
 
-        public void StartParallax() { }
-        public void StopParallax() { }
+        public void StartParallax() => isParallaxActive = true;
+
+        public void StopParallax() => isParallaxActive = false;
     }
 }
