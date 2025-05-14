@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b944696f3d9ea4d9bad3b62ace3ef9, type: 3}
+  m_Name: Parallax Data
+  m_EditorClassIdentifier: 
+  parallaxLayers:
+  - parallaxLayerType: 1
+    parallaxEffectPrefab: {fileID: 8830087881645902282, guid: fba0e51f713ff5947a939525b3523cd9, type: 3}
+    moveSpeed: 0.3
+    offset: 19.2
+  - parallaxLayerType: 2
+    parallaxEffectPrefab: {fileID: 809375225949160628, guid: 6cd7cd9580849a749b5e410770c60071, type: 3}
+    moveSpeed: 0.5
+    offset: 19.2
+  - parallaxLayerType: 3
+    parallaxEffectPrefab: {fileID: 6361504989619854334, guid: 4c3910c892153fd43a1dffa98b14fb40, type: 3}
+    moveSpeed: 1
+    offset: 19.2
+  - parallaxLayerType: 4
+    parallaxEffectPrefab: {fileID: 6217223929597860094, guid: 44cc5bc551675a347ac7d90a41ee6b31, type: 3}
+    moveSpeed: 1.5
+    offset: 19.2
+  - parallaxLayerType: 5
+    parallaxEffectPrefab: {fileID: 2962649293466442269, guid: 09f610f4dca6a0042bc3083418cb756c, type: 3}
+    moveSpeed: 1.8
+    offset: 19.2
+  - parallaxLayerType: 6
+    parallaxEffectPrefab: {fileID: 8471757226645155725, guid: d5ac08e0b788a4747bab3e01e8f275db, type: 3}
+    moveSpeed: 2.5
+    offset: 19.2
+  - parallaxLayerType: 7
+    parallaxEffectPrefab: {fileID: 3129256896326032491, guid: a15477f67d01be145a24f5051e9f2bea, type: 3}
+    moveSpeed: 3
+    offset: 19.2

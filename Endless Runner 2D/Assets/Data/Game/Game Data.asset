@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Game Data
   m_EditorClassIdentifier: 
   gameManagerPrefab: {fileID: 7081100358174163253, guid: 49209d1f5a1aeb449aa6a588b634d588, type: 3}
-  inputManagerPrefab: {fileID: 2804461847756518030, guid: cabcd0ab2b971cd4681b998286356580, type: 3}
   uiManagerPrefab: {fileID: 2975003446590095795, guid: ba5f01ca6d999344792f715d03afce72, type: 3}
   playerManagerPrefab: {fileID: 631466894181228113, guid: 7181be5cc25f0474c8fb24625bdd6200, type: 3}
   obstacleManagerPrefab: {fileID: 8017952777700914226, guid: a10531c732ffb974a9b20347bf192cf3, type: 3}
+  parallaxManagerPrefab: {fileID: 346241227820410508, guid: e4f1595758487d04483392d918353cee, type: 3}
